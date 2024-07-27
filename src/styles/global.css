@@ -1,0 +1,92 @@
+:root {
+  /* Brand Colors */
+  --brand-primary: #d4af37;
+  --brand-secondary: #4e4e4e;
+  --brand-accent: #000000;
+
+  /* Neutral Colors */
+  --neutral-light: #ffffff;
+  --neutral-medium: #888888;
+  --neutral-dark: #333333;
+
+  /* Utility Colors */
+  --utility-success: #28a745;
+  --utility-warning: #ffc107;
+  --utility-danger: #dc3545;
+  --utility-info: #17a2b8;
+
+  /* Typography */
+  --font-primary: 'Roboto', sans-serif;
+  --font-secondary: 'Star Jedi', sans-serif;
+  
+  /* Font Sizes */
+  --font-size-small: 0.875rem;
+  --font-size-medium: 1rem;
+  --font-size-large: 1.25rem;
+  --font-size-xlarge: 1.5rem;
+
+  /* Spacing */
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+
+  /* Border */
+  --border-radius: 4px;
+  --border-subtle: 1px solid #444;
+  --border-accent: 2px solid var(--brand-primary);
+
+  /* Box Shadow */
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  /* Table Specific */
+  --table-container-bg: #1e1e1e;
+  --table-header-bg: #333;
+  --table-header-color: var(--brand-primary);
+  --table-row-bg: #222;
+  --table-row-hover-bg: #333;
+  --table-border: 1px solid #444;
+  --table-cell-padding: 0.75rem;
+
+  /* Form Specific */
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+  --dialog-bg: #333;
+  --input-bg: #222;
+  --input-text: var(--brand-primary);
+  --input-border: 1px solid #555;
+  --input-padding: 0.5rem;
+
+  /* Button Specific */
+  --button-bg: var(--brand-primary);
+  --button-text: #000;
+  --button-hover-bg: #bfa15e;
+  --button-padding: 0.5rem 1rem;
+  --button-primary-bg: var(--brand-primary);
+  --button-secondary-bg: #555;
+
+  /* Text Colors */
+  --text-color: var(--neutral-light);
+  --accent-color: var(--brand-primary);
+
+  /* Existing variables */
+  --header-background-gradient: linear-gradient(135deg, var(--brand-accent), var(--brand-secondary));
+  --border-color: var(--brand-primary);
+  --button-border-color: var(--brand-primary);
+  --button-color: var(--brand-primary);
+  --button-hover-color: var(--brand-primary);
+
+  /* Search and SearchDisplay Specific Variables */
+  --search-background: #1c1c1c;
+  --search-input-background: #333;
+  --search-input-border: #333;
+  --search-input-color: #fff;
+  --search-placeholder-color: #888;
+  --search-popup-background: #1c1c1c;
+  --search-popup-shadow: rgba(0, 0, 0, 0.5);
+  --search-icon-color: #fff;
+  --results-background: #fff;
+  --results-border: #e0e0e0;
+  --results-title-color: #000;
+  --results-text-color: #333;
+  --results-item-border: #ccc;
+  --results-item-hover: #f7f7f7;
+}
