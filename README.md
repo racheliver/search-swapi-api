@@ -16,7 +16,7 @@ This is a Star Wars-themed search application built using React, TypeScript, and
 - TypeScript
 - Vite
 - Material-UI
-- Redux
+- useContext
 - React Router
 - Testing Library
 - Vitest
@@ -106,6 +106,14 @@ The tests are organized to cover functional, unit, and integration aspects of th
 - **Search.test.tsx**: (Also functional) Tests how the `Search` component integrates with the search context and hooks.
 
 - **Header.test.tsx**: (Also functional) Tests how the `Header` component integrates with routing and other components.
+
+
+### End-to-End (E2E) Tests
+
+- **e2e.test.ts**: Tests the full workflow of the application using Puppeteer. Includes searching for an entity and navigating to a category page.
+
+- **criticalFunctionality.test.ts**: Verifies critical functionality using API calls to ensure that the application's core features are working as expected.
+
 
 
 ## Contributing
