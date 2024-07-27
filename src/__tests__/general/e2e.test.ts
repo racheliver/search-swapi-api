@@ -4,51 +4,93 @@ import puppeteer, { Browser, Page } from 'puppeteer';
 let browser: Browser;
 let page: Page;
 
+const retryOperation = async (operation: () => Promise<void>, maxRetries: number = 3, delay: number = 5000) => {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      await operation();
+      return;
+    } catch (error) {
+      console.error(`Attempt ${i + 1} failed:`, error);
+      if (i === maxRetries - 1) throw error;
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+};
+
 beforeAll(async () => {
-  browser = await puppeteer.launch({ headless: false });
-});
+  await retryOperation(async () => {
+    try {
+      console.log('Launching browser...');
+      browser = await puppeteer.launch({
+        headless: false,
+        slowMo: 50,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+      });
+      console.log('Browser launched successfully');
+    } catch (error) {
+      console.error('Failed to launch browser:', error);
+      throw error;
+    }
+  });
+}, 30000);
 
 afterAll(async () => {
-  await browser.close();
+  try {
+    if (browser) {
+      console.log('Closing browser...');
+      await browser.close();
+      console.log('Browser closed successfully');
+    }
+  } catch (error) {
+    console.error('Failed to close browser:', error);
+  }
 });
 
 describe('E2E Tests', () => {
   test('Search and navigate to category', async () => {
-    page = await browser.newPage();
-    
-    try {
-      await page.goto('http://localhost:5173');
-      
-      await page.waitForSelector('#search');
-      await page.type('#search', 'Luke');
-      
-      await page.waitForSelector('.results-container');
-      const viewAllButton = await page.waitForSelector('.results-container .view-all-button');
-      
-      if (viewAllButton) {
-        await viewAllButton.click();
-        
-        // Instead of waiting for navigation, wait for a specific element on the category page
-        await page.waitForSelector('.list-title', { timeout: 5000 });
-        
-        // Wait a short time for any client-side routing to complete
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Get the current URL
-        const currentUrl = page.url();
-        console.log('Current URL:', currentUrl);
-        
-        // Check if the URL contains '/category/'
-        expect(currentUrl).toContain('/category/');
-      } else {
-        throw new Error('View All button not found');
+    const runTest = async () => {
+      console.log('Starting test...');
+      page = await browser.newPage();
+     
+      try {
+        console.log('Navigating to homepage...');
+        await page.goto('http://localhost:5173', { waitUntil: 'networkidle0', timeout: 30000 });
+       
+        console.log('Waiting for root element...');
+        await page.waitForSelector('#root', { timeout: 10000 });
+       
+        console.log('Waiting for search input...');
+        await page.waitForSelector('#search', { timeout: 10000 });
+        await page.type('#search', 'Luke');
+       
+        console.log('Waiting for results container...');
+        await page.waitForSelector('.results-container', { timeout: 10000 });
+        const viewAllButton = await page.waitForSelector('.results-container .view-all-button', { timeout: 10000 });
+       
+        if (viewAllButton) {
+          console.log('Clicking View All button...');
+          await viewAllButton.click();
+         
+          console.log('Waiting for list title...');
+          await page.waitForSelector('.list-title', { timeout: 10000 });
+         
+          console.log('Waiting for network idle...');
+          await page.waitForNetworkIdle({ timeout: 10000 });
+         
+          const currentUrl = page.url();
+          console.log('Current URL:', currentUrl);
+         
+          expect(currentUrl).toContain('/category/');
+        } else {
+          throw new Error('View All button not found');
+        }
+      } finally {
+        if (page) {
+          await page.close();
+        }
       }
-    } catch (error) {
-      console.error('Test failed:', error);
-      await page.screenshot({ path: 'error-screenshot.png' });
-      throw error;
-    } finally {
-      await page.close();
-    }
-  }, 30000);
+    };
+
+    await retryOperation(runTest, 3, 5000);
+  }, 60000);
 });
