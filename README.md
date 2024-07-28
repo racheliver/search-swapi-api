@@ -76,11 +76,12 @@ The application is also deployed on Netlify. You can view it [here](https://ench
 
 ### Components
 - `Search`: Search bar component with autocomplete and results display.
-- `SearchDisplay`: Displays search results with query highlighting.
+- `SearchDisplay`: Displays search results with query styled.
 - `Header`: Includes a rotating image carousel and navigation button.
 - `Category`: Displays items in a table format with CRUD operations and form handling.
 - `TableHeader`: Renders table headers with formatted attribute names.
 - `TableRow`: Displays individual rows in a table with actions for editing and deleting items.
+- `Form`: Handles the creation and editing of items with form inputs and submission. Includes inputs for name, attributes, and description.
 
 ## Test Files
 
