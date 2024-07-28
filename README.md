@@ -45,9 +45,6 @@ This is a Star Wars-themed search application built using React, TypeScript, and
     npm run dev
     ```
 2. Open `http://localhost:5173` in your browser to view the application.
-## Deployment
-
-The application is also deployed on Netlify. You can view it [here](https://dynamic-frangollo-23ac8b.netlify.app/).
 
 ## Features
 - **Search Functionality**: Allows users to search for Star Wars characters, planets, films, species, starships, and vehicles. Results are displayed with highlighted query terms.
