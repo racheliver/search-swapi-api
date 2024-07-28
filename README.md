@@ -119,8 +119,4 @@ The tests are organized to cover functional, unit, and integration aspects of th
 ## Contributing
 Feel free to submit pull requests or open issues to contribute to the project. Please follow the guidelines for contributing and code style.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
 
