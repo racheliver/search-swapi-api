@@ -47,7 +47,7 @@ This is a Star Wars-themed search application built using React, TypeScript, and
 2. Open `http://localhost:5173` in your browser to view the application.
 
 ## Deployment
-The application is also deployed on Netlify. You can view it [here](https://enchanting-kringle-60fe64.netlify.app/).
+The application is also deployed on Netlify. You can view it [here](https://star-wars-search-fans.netlify.app/).
 
 ## Features
 - **Search Functionality**: Allows users to search for Star Wars characters, planets, films, species, starships, and vehicles. Results are displayed with highlighted query terms.
